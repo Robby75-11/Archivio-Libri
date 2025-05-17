@@ -8,6 +8,8 @@ public class ProvaArchivio {
 
         Archivio archivio = new Archivio();
 
+
+        // Blocco try-catch per precaricare alcuni elementi all'avvio (opzionale)
         try {
             archivio.aggiungiElemento(new Libro("978-8891992110", "Il Signore degli Anelli", 1954, 1200, "J.R.R. Tolkien", "Fantasy"));
             archivio.aggiungiElemento(new Libro("978-0545583002", "Harry Potter e la pietra filosofale", 1997, 300, "J.K. Rowling", "Fantasy"));
@@ -16,8 +18,8 @@ public class ProvaArchivio {
             System.err.println("Errore durante il precaricamento: " + e.getMessage());
         }
 
-        Scanner scanner = new Scanner(System.in);
-        int scelta;
+        Scanner scanner = new Scanner(System.in); //Crea uno Scanner per leggere l'input dell'utente dalla console
+        int scelta; // Variabile per memorizzare la scelta dell'utente dal menu
 
         do {
             System.out.println("\n--- MENU ARCHIVIO BIBLIOGRAFICO ---");
@@ -33,6 +35,9 @@ public class ProvaArchivio {
             System.out.println("Scelta: ");
             scelta = scanner.nextInt();
             scanner.nextLine();
+
+
+            // Blocco try-catch per gestire eventuali eccezioni (es. ISBN non trovato)
 
             try {
                 switch (scelta) {
@@ -145,7 +150,7 @@ public class ProvaArchivio {
         scanner.close();
 
     }
-
+        //Metodo per visualizzare elenco di tutti i libri e riviste con statistiche
         public static void visualizzaLibriRivisteConStatistiche(Archivio archivio){
             System.out.println("\n--- Elenco di tutti i Libri ---");
             archivio.getElementiCatalogo().stream()

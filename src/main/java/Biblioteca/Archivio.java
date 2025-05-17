@@ -6,19 +6,26 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 class Archivio {
-     private List<ElementoCatalogo> elementiCatalogo;
+     private List<ElementoCatalogo> elementiCatalogo;// Lista privata per memorizzare gli elementi del catalogo (Libri e Riviste)
 
      public Archivio() {
          this.elementiCatalogo = new ArrayList<>();
 
      }
 
+    /**
+     * Aggiunge un elemento (Libro o Rivista) al catalogo.
+     * @param elemento L'elemento da aggiungere (istanza di ElementoCatalogo).
+     * @throws IllegalArgumentException Se un elemento con lo stesso ISBN è già presente nel catalogo.
+     */
     public void aggiungiElemento(ElementoCatalogo elemento) throws IllegalArgumentException {
         if (elementiCatalogo.stream().anyMatch(e -> e.getIsbn().equals(elemento.getIsbn()))) {
             throw new IllegalArgumentException("Elemento con ISBN " + elemento.getIsbn() + " già presente nel catalogo.");
         }
         elementiCatalogo.add(elemento);
     }
+
+    // Ricerca tramite ISBN
 
     public ElementoCatalogo ricercaPerISBN(String isbn) throws ISBNNotFoundException {
         return elementiCatalogo.stream()
@@ -61,6 +68,8 @@ class Archivio {
         elementiCatalogo.set(index, nuovoElemento);
     }
 
+
+
     private ElementoCatalogo aggiornaIsbnSeNecessario(String vecchioIsbn, ElementoCatalogo nuovoElemento) {
         if (!vecchioIsbn.equals(nuovoElemento.getIsbn())) {
             // Potresti decidere se permettere o meno il cambio di ISBN durante l'aggiornamento
@@ -69,6 +78,11 @@ class Archivio {
         }
         return nuovoElemento;
     }
+
+    /**
+     * Calcola e stampa le statistiche del catalogo, inclusi il numero di libri,
+     * il numero di riviste, l'elemento con più pagine e la media delle pagine.
+     */
 
     public void stampaStatistiche() {
         long numeroLibri = elementiCatalogo.stream().filter(e -> e instanceof Libro).count();
@@ -94,7 +108,7 @@ class Archivio {
         System.out.println("-----------------------------");
     }
 
-
+         // Restituisce la lista completa degli elementi del catalogo.
         public List<ElementoCatalogo> getElementiCatalogo() {
             return elementiCatalogo;
 
@@ -102,5 +116,18 @@ class Archivio {
 
 
     }
+    public static void visualizzaLibriRivisteConStatistiche(Archivio archivio) {
+        System.out.println("\n--- Elenco di tutti i Libri ---");
+        archivio.getElementiCatalogo().stream()
+                .filter(elemento -> elemento instanceof Libro)
+                .forEach(System.out::println);
+        System.out.println("-----------------------------");
 
+        System.out.println("\n--- Elenco di tutte le Riviste ---");
+        archivio.getElementiCatalogo().stream()
+                .filter(elemento -> elemento instanceof Rivista)
+                .forEach(System.out::println);
+        System.out.println("-----------------------------");
+
+    }
 }

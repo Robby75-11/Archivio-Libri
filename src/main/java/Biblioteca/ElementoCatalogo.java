@@ -1,5 +1,9 @@
 package Biblioteca;
 
+/**
+ * Classe astratta che rappresenta un elemento generico del catalogo bibliografico.
+ * Le classi Libro e Rivista estendono questa classe.
+ */
 public abstract class ElementoCatalogo {
 
     private String isbn;
@@ -7,6 +11,8 @@ public abstract class ElementoCatalogo {
     private int annoPubblicazione;
     private int numeroPagine;
 
+    // Costruttore della classe astratta ElementoCatalogo.
+    //      Le sottoclassi (Libro e Rivista) devono chiamare questo costruttore tramite 'super()'
 
 
     public ElementoCatalogo(String isbn, String titolo, int annoPubblicazione, int numeroPagine) {
