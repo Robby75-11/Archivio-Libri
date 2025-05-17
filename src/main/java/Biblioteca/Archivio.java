@@ -56,7 +56,7 @@ class Archivio {
         if (index == -1) {
             throw new ISBNNotFoundException("Elemento con ISBN " + isbn + " non trovato per l'aggiornamento.");
         }
-        // Manteniamo l'ISBN originale
+        // Manteniamo l' 'ISBN' originale
         nuovoElemento = aggiornaIsbnSeNecessario(elementiCatalogo.get(index).getIsbn(), nuovoElemento);
         elementiCatalogo.set(index, nuovoElemento);
     }
@@ -92,6 +92,15 @@ class Archivio {
         }
         System.out.println("Media delle pagine di tutti gli elementi: " + String.format("%.2f", mediaPagine));
         System.out.println("-----------------------------");
+    }
+
+
+        public List<ElementoCatalogo> getElementiCatalogo() {
+            return elementiCatalogo;
+
+
+
+
     }
 
 }

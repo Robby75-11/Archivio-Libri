@@ -6,7 +6,16 @@ public class ProvaArchivio {
 
     public static void main(String[] args) {
 
-        Archivio  archivio  = new Archivio();
+        Archivio archivio = new Archivio();
+
+        try {
+            archivio.aggiungiElemento(new Libro("978-8891992110", "Il Signore degli Anelli", 1954, 1200, "J.R.R. Tolkien", "Fantasy"));
+            archivio.aggiungiElemento(new Libro("978-0545583002", "Harry Potter e la pietra filosofale", 1997, 300, "J.K. Rowling", "Fantasy"));
+            archivio.aggiungiElemento(new Rivista("1122-3344", "National Geographic", 2023, 150, "MENSILE"));
+        } catch (IllegalArgumentException e) {
+            System.err.println("Errore durante il precaricamento: " + e.getMessage());
+        }
+
         Scanner scanner = new Scanner(System.in);
         int scelta;
 
@@ -19,6 +28,7 @@ public class ProvaArchivio {
             System.out.println("5. Ricerca libri per autore");
             System.out.println("6. Aggiorna elemento per ISBN");
             System.out.println("7. Stampa statistiche ");
+            System.out.println("8. Visualizza tutti i libri e le riviste con statistiche");
             System.out.println("0. Esci");
             System.out.println("Scelta: ");
             scelta = scanner.nextInt();
@@ -55,13 +65,13 @@ public class ProvaArchivio {
                         }
                         break;
                     case 2:
-                        System.out.print("Inserisci l'ISBN da cercare: ");
+                        System.out.print("Inserisci l' ISBN da cercare: ");
                         String isbnRicerca = scanner.nextLine();
                         ElementoCatalogo elementoTrovato = archivio.ricercaPerISBN(isbnRicerca);
                         System.out.println("Elemento trovato: " + elementoTrovato);
                         break;
                     case 3:
-                        System.out.print("Inserisci l'ISBN dell'elemento da rimuovere: ");
+                        System.out.print("Inserisci l' ISBN dell'elemento da rimuovere: ");
                         String isbnRimuovi = scanner.nextLine();
                         archivio.rimuoviElemento(isbnRimuovi);
                         System.out.println("Elemento con ISBN " + isbnRimuovi + " rimosso (se presente).");
@@ -80,7 +90,7 @@ public class ProvaArchivio {
                         archivio.ricercaPerAutore(autoreRicerca).forEach(System.out::println);
                         break;
                     case 6:
-                        System.out.print("Inserisci l'ISBN dell'elemento da aggiornare: ");
+                        System.out.print("Inserisci l' ISBN dell'elemento da aggiornare: ");
                         String isbnAggiorna = scanner.nextLine();
                         try {
                             ElementoCatalogo elementoEsistente = archivio.ricercaPerISBN(isbnAggiorna);
@@ -116,6 +126,9 @@ public class ProvaArchivio {
                     case 7:
                         archivio.stampaStatistiche();
                         break;
+                    case 8:
+                        visualizzaLibriRivisteConStatistiche(archivio);
+                        break;
                     case 0:
                         System.out.println("Uscita dal programma.");
                         break;
@@ -131,7 +144,25 @@ public class ProvaArchivio {
 
         scanner.close();
 
+    }
+
+        public static void visualizzaLibriRivisteConStatistiche(Archivio archivio){
+            System.out.println("\n--- Elenco di tutti i Libri ---");
+            archivio.getElementiCatalogo().stream()
+                    .filter(elemento -> elemento instanceof Libro)
+                    .forEach(System.out::println);
+            System.out.println("-----------------------------");
+
+            System.out.println("\n--- Elenco di tutte le Riviste ---");
+            archivio.getElementiCatalogo().stream()
+                    .filter(elemento -> elemento instanceof Rivista)
+                    .forEach(System.out::println);
+            System.out.println("-----------------------------");
+
+
+
+        }
 
        }
 
-}
+
