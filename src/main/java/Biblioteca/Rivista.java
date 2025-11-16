@@ -16,6 +16,10 @@ public class Rivista extends ElementoCatalogo {
         return periodicita;
     }
 
+    public void setPeriodicita(String periodicita) {
+        this.periodicita = periodicita;
+    }
+
     @Override
     public String getDettagliSpecifici() {
         return "Periodicità: " + periodicita;

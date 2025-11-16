@@ -22,6 +22,10 @@ public class Libro extends ElementoCatalogo {
         return genere;
     }
 
+
+    public void setAutore(String autore) { this.autore = autore; }
+    public void setGenere(String genere) { this.genere = genere; }
+
     @Override
     public String getDettagliSpecifici() {
         return "Autore: " + autore + ", Genere: " + genere;

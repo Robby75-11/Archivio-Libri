@@ -116,18 +116,5 @@ class Archivio {
 
 
     }
-    public static void visualizzaLibriRivisteConStatistiche(Archivio archivio) {
-        System.out.println("\n--- Elenco di tutti i Libri ---");
-        archivio.getElementiCatalogo().stream()
-                .filter(elemento -> elemento instanceof Libro)
-                .forEach(System.out::println);
-        System.out.println("-----------------------------");
 
-        System.out.println("\n--- Elenco di tutte le Riviste ---");
-        archivio.getElementiCatalogo().stream()
-                .filter(elemento -> elemento instanceof Rivista)
-                .forEach(System.out::println);
-        System.out.println("-----------------------------");
-
-    }
 }

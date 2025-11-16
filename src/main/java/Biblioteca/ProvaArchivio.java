@@ -11,10 +11,15 @@ public class ProvaArchivio {
 
         // Blocco try-catch per precaricare alcuni elementi all'avvio (opzionale)
         try {
-            archivio.aggiungiElemento(new Libro("978-8891992110", "Il Signore degli Anelli", 1954, 1200, "J.R.R. Tolkien", "Fantasy"));
+            archivio.aggiungiElemento(new Libro("854-25846543", "Non ci sono buone notizie", 2025, 272, "Andrea Rizzoli", "Drammatico"));
+            archivio.aggiungiElemento(new Libro("978-8891992110", "Il Signore degli Anelli", 1954, 280, "J.R.R. Tolkien", "Fantasy"));
             archivio.aggiungiElemento(new Libro("978-0545583002", "Harry Potter e la pietra filosofale", 1997, 300, "J.K. Rowling", "Fantasy"));
             archivio.aggiungiElemento(new Rivista("1122-3344", "National Geographic", 2023, 150, "MENSILE"));
-        } catch (IllegalArgumentException e) {
+            archivio.aggiungiElemento(new Rivista("254-895", "Focus", 1993, 55, "SETTIMANALE"));
+            archivio.aggiungiElemento(new Rivista("255-587", "Panorama", 1995, 65, "SEMESTRALE"));
+
+        }
+        catch (IllegalArgumentException e) {
             System.err.println("Errore durante il precaricamento: " + e.getMessage());
         }
 

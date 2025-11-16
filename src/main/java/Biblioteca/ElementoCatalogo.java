@@ -40,6 +40,10 @@ public abstract class ElementoCatalogo {
         return numeroPagine;
     }
 
+    public void setTitolo(String titolo) { this.titolo = titolo; }
+    public void setAnnoPubblicazione(int anno) { this.annoPubblicazione = anno; }
+    public void setNumeroPagine(int pagine) { this.numeroPagine = pagine; }
+
     public abstract String getDettagliSpecifici();
 
     @Override     public String toString() {
